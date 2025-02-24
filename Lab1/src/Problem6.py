@@ -13,6 +13,7 @@
 # o X X X o
 # Deberá imprimir también la ruta que siguió.
 # Mostrar un segundo mapa con el “camino” seguido por el robot mediante flechas
+
 import random
 from collections import deque
 
@@ -22,31 +23,40 @@ def generar_matriz(n=5):
     matriz[-1][-1] = 'o'  # Punto final
     
     # Generar obstáculos aleatorios
-    celdas_disponibles = n * n - 2  # Excluir inicio y fin
-    num_obstaculos = random.randint(1, celdas_disponibles // 2)
+    celdas_disponibles = n * n - 2  # 2 para excluir inicio y fin
+    num_obstaculos = random.randint(1, celdas_disponibles // 2) # Hasta la mitad de las celdas
     
+    # Generar obstáculos en posiciones aleatorias 
     obstaculos = set()
     while len(obstaculos) < num_obstaculos:
+        # Generar posición aleatoria
         fila = random.randint(0, n-1)
         col = random.randint(0, n-1)
+        # Verificar que no sea el inicio o el fin
         if (fila, col) not in [(0,0), (n-1, n-1)]:
+            # Añade obstáculo en la posición generada
             obstaculos.add((fila, col))
             matriz[fila][col] = 'X'
     
     return matriz
 
+# Función para buscar el camino en la matriz
 def buscar_camino(matriz):
     n = len(matriz)
     movimientos = [(-1,0), (0,1), (1,0), (0,-1)]  # Norte, Este, Sur, Oeste
     flechas = ['↑', '→', '↓', '←']
     
+    # Inicializar cola y visitados
     cola = deque()
     visitado = set()
     
     # Iniciar en (0,0) con todas direcciones posibles
     for direccion_inicial in range(4):
+        # (fila, col, direccion, camino)
         estado = (0, 0, direccion_inicial, [])
+        # Añadir a la cola
         cola.append(estado)
+        # Marcar como visitado
         visitado.add((0, 0, direccion_inicial))
     
     while cola:
@@ -76,15 +86,18 @@ def buscar_camino(matriz):
     
     return None
 
+# Función para imprimir el mapa
 def imprimir_mapa(mapa):
     for fila in mapa:
         print(" ".join(fila))
 
+# Función principal
 def main():
     n = 5
     matriz = generar_matriz(n)
     camino = buscar_camino(matriz)
     
+    # Verificar si se encontró un camino
     if not camino:
         print("Imposible llegar al destino")
         return
@@ -103,5 +116,6 @@ def main():
     
     imprimir_mapa(mapa_ruta)
 
+# Llamado a la función principal
 if __name__ == "__main__":
     main()
