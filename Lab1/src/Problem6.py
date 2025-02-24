@@ -18,104 +18,114 @@ import random
 from collections import deque
 
 def generar_matriz(n=5):
+    
+    #Genera una matriz de tamaño n x n con obstáculos aleatorios ('X').
+    #El punto inicial (0,0) y final (n-1,n-1) siempre están libres ('o').
+    #Número de obstáculos: entre 1 y la mitad de las celdas disponibles.
+
+    # Inicializar matriz con todas las celdas libres
     matriz = [['o' for _ in range(n)] for _ in range(n)]
-    matriz[0][0] = 'o'  # Punto inicial
-    matriz[-1][-1] = 'o'  # Punto final
-    
-    # Generar obstáculos aleatorios
-    celdas_disponibles = n * n - 2  # 2 para excluir inicio y fin
-    num_obstaculos = random.randint(1, celdas_disponibles // 2) # Hasta la mitad de las celdas
-    
-    # Generar obstáculos en posiciones aleatorias 
+    matriz[0][0] = 'o'  # Punto inicial (no se marca como obstáculo)
+    matriz[-1][-1] = 'o'  # Punto final (no se marca como obstáculo)
+
+    # Generar obstáculos aleatorios evitando inicio y fin
+    celdas_disponibles = n * n - 2  # Excluir inicio y fin
+    num_obstaculos = random.randint(1, celdas_disponibles // 2)  # Límite razonable
+
     obstaculos = set()
     while len(obstaculos) < num_obstaculos:
-        # Generar posición aleatoria
         fila = random.randint(0, n-1)
         col = random.randint(0, n-1)
-        # Verificar que no sea el inicio o el fin
+        # Asegurar que no se coloquen obstáculos en inicio/fin
         if (fila, col) not in [(0,0), (n-1, n-1)]:
-            # Añade obstáculo en la posición generada
             obstaculos.add((fila, col))
             matriz[fila][col] = 'X'
-    
+
     return matriz
 
-# Función para buscar el camino en la matriz
+
 def buscar_camino(matriz):
+    
+    # Busca un camino desde (0,0) hasta (n-1,n-1) usando BFS.
+    # El robot puede girar o avanzar.
+    # Devuelve: lista de pasos [(fila, columna, dirección)] si hay camino.
+    # Direcciones: 0=Norte(↑), 1=Este(→), 2=Sur(↓), 3=Oeste(←).
+    
     n = len(matriz)
-    movimientos = [(-1,0), (0,1), (1,0), (0,-1)]  # Norte, Este, Sur, Oeste
-    flechas = ['↑', '→', '↓', '←']
-    
-    # Inicializar cola y visitados
-    cola = deque()
-    visitado = set()
-    
-    # Iniciar en (0,0) con todas direcciones posibles
+    movimientos = [(-1,0), (0,1), (1,0), (0,-1)]  # Correspondencia direcciones: [N, E, S, O]
+    flechas = ['↑', '→', '↓', '←']  # Símbolos para visualización
+
+    cola = deque()  # Cola para BFS
+    visitado = set()  # Estados visitados (fila, col, dirección)
+
+    # Inicializar con todas las direcciones posibles en el inicio
     for direccion_inicial in range(4):
-        # (fila, col, direccion, camino)
-        estado = (0, 0, direccion_inicial, [])
-        # Añadir a la cola
-        cola.append(estado)
-        # Marcar como visitado
+        estado_inicial = (0, 0, direccion_inicial, [])  # (fila, col, dir, camino)
+        cola.append(estado_inicial)
         visitado.add((0, 0, direccion_inicial))
-    
+
     while cola:
         fila, col, direccion, camino = cola.popleft()
-        
-        # Verificar si llegó al destino
+
+        # Verificar si llegó al destino (esquina inferior derecha)
         if (fila, col) == (n-1, n-1):
-            return camino + [(fila, col, direccion)]
-        
-        # Generar nuevos estados
-        for accion in [-1, 1, 0]:  # Izq, Der, Avanzar
-            nueva_dir = (direccion + accion) % 4 if accion != 0 else direccion
-            
-            if accion != 0:  # Giro
+            return camino + [(fila, col, direccion)]  # Camino completo
+
+        # Explorar posibles acciones: -1=Girar izquierda, 1=Girar derecha, 0=Avanzar
+        for accion in [-1, 1, 0]:
+            if accion != 0:  # Giro (cambia dirección pero no posición)
+                nueva_dir = (direccion + accion) % 4  # Cálculo modular para dirección
                 nuevo_estado = (fila, col, nueva_dir, camino.copy())
                 if (fila, col, nueva_dir) not in visitado:
                     visitado.add((fila, col, nueva_dir))
                     cola.append(nuevo_estado)
-            else:  # Avance
-                df, dc = movimientos[direccion]
-                nf, nc = fila + df, col + dc
+            else:  # Avanzar en la dirección actual
+                df, dc = movimientos[direccion]  # Delta fila/columna
+                nf, nc = fila + df, col + dc  # Nueva posición
+
+                # Verificar límites de la matriz y celda libre
                 if 0 <= nf < n and 0 <= nc < n and matriz[nf][nc] == 'o':
                     if (nf, nc, direccion) not in visitado:
+                        # Registrar movimiento y añadir a la cola
                         nuevo_camino = camino + [(fila, col, direccion)]
                         visitado.add((nf, nc, direccion))
                         cola.append((nf, nc, direccion, nuevo_camino))
-    
-    return None
 
-# Función para imprimir el mapa
+    return None  # No hay camino
+
+
 def imprimir_mapa(mapa):
+    """Imprime la matriz en formato grid con espacios entre caracteres."""
     for fila in mapa:
         print(" ".join(fila))
 
-# Función principal
+
 def main():
-    n = 5
+    n = 5  # Tamaño de la matriz (puede modificarse)
     matriz = generar_matriz(n)
     camino = buscar_camino(matriz)
-    
-    # Verificar si se encontró un camino
+
     if not camino:
         print("Imposible llegar al destino")
         return
-    
-    # Mapa original
+
+    # Mapa original con obstáculos
     print("Mapa original:")
     imprimir_mapa(matriz)
+
+    # Mapa con la ruta seguida (flechas)
     print("\nRuta seguida:")
-    
-    # Mapa de ruta
-    mapa_ruta = [fila.copy() for fila in matriz]
+    mapa_ruta = [fila.copy() for fila in matriz]  # Copia para no modificar original
+
     for paso in camino:
         f, c, d = paso
-        if (f, c) != (n-1, n-1):  # No marcar el destino
+        # No sobreescribir el destino final
+        if (f, c) != (n-1, n-1):
+            # Asignar símbolos según dirección: ↑ → ↓ ←
             mapa_ruta[f][c] = '→' if d == 1 else '←' if d == 3 else '↑' if d == 0 else '↓'
-    
+
     imprimir_mapa(mapa_ruta)
 
-# Llamado a la función principal
+
 if __name__ == "__main__":
     main()
