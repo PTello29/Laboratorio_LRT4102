@@ -169,3 +169,7 @@ if __name__ == '__main__':
 ```
 
 ![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%203.png)
+Así es como se ve la interfaz de este código.
+
+![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%204.png)
+Ejemplo de movimiento con las teclas W, A, S, D.
