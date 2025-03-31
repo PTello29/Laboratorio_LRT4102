@@ -176,11 +176,11 @@ Así es como se ve la interfaz de este código.
 
 Ejemplo de movimiento con las teclas W, A, S, D.
 
-![Ejemplo con WASD](/Lab2/Images/Captura%20de%20pantalla%205.png)
+![Ejemplo del cuadrado](/Lab2/Images/Captura%20de%20pantalla%205.png)
 
 Ejemplo del cuadrado.
 
-![Ejemplo con WASD](/Lab2/Images/Captura%20de%20pantalla%206.png)
+![Ejemplo del triángulo](/Lab2/Images/Captura%20de%20pantalla%206.png)
 
 Ejemplo de triángulo.
 
@@ -287,7 +287,7 @@ if __name__ == '__main__':
         pass
 ```
 
-Código del controlador derivaitvo:
+Código del controlador derivativo:
 
 ``` python
 #!/usr/bin/env python3
@@ -517,3 +517,17 @@ if __name__ == '__main__':
     except rospy.ROSInterruptException:
         pass
 ```
+Para los tres códigos, la tortuga logra llegar a la posición deseada (x, y) la cual es proporcionada por el usuario pero no logra verse correctamente las diferencias entre cada controlador, por lo que se uso Plot Juggler, que es un programa con el que podemos graficar datos de rospy, y en este programa podremos ver las diferencias entre cada controlador:
+
+Controlador proporcional:
+
+![Gráfico del controlador proporcional](/Lab2/Images/Captura%20de%20pantalla%20PC.png)
+
+Controlador PD:
+
+![Gráfico del controlador PD](/Lab2/Images/Captura%20de%20pantalla%20PDC.png)
+
+Controlador PID:
+
+![Gráfico del controlador PID](/Lab2/Images/Captura%20de%20pantalla%20PIDC.png)
+
