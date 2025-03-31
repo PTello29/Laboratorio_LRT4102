@@ -5,3 +5,4 @@ En este reporte se hicieron tres prácticas. La primera siendo sobre el funciona
 
 En esta práctica se analizaron dos códigos: el listener y el talker. El talker es un código que manda un "hello world" cada ciertos microsegundos mediante el rospy.Publisher. El listener es un código que se suscribe al "chatter" que es el publicador del código del talker, por lo que todo lo que mencione el talker, el listener los escuchará de la siguiente forma:
 
+![Listener funcionando](/Lab2/Images/Captura%20de%20pantalla%201.png)
