@@ -531,3 +531,5 @@ Controlador PID:
 
 ![Gráfico del controlador PID](/Lab2/Images/Captura%20de%20pantalla%20PIDC.png)
 
+Como se logra apreciar, para los controladores P y PD, los resultados son iguales y no hay tanta diferencia de errores o de puntos a comparar. La diferencia entra con el controlador PID, ya que presenta unas oscilasciones en el momento de estabilizarse, esto debido a que el control integral elimina el error en estado estacionnario, es decir, que buscará llegar a las coordenadas exactas en este proyecto, pero a cambio de presentar oscilasciones como se muestra en la imagen. La respuesta de cuál usar es subjetiva, aunque viendolo desde un punto de vista de optimización, el control proporcional es el mejor controlador que se puede usar para este proyecto en específico.
+
