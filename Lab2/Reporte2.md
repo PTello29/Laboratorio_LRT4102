@@ -10,3 +10,9 @@ En esta práctica se analizaron dos códigos: el listener y el talker. El talker
 Como se aprecia, el listener se inicializó pero no sucede nada, esto debido a que el talker aún no se ha inicializado, por lo que el listener no tiene nada que "escuchar".
 
 ![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%202.png)
+
+Ahora como se aprecia, el listener escucha todo lo que el talker manda. Para esta práctica específicamente se realizó el listener con un argumento de anonymous=True, para que rospy escoja un nombre único para este listener, por lo que puedan existir varios listeners escuchando al mismo talker.
+
+## Práctica 2. Control de tortuga con teclado
+
+Para la segunda parte de este reporte, se realizó un código que hace que la tortuga de turtlesim pueda controlarse mediante teclas del teclado, especicamente las teclas W, A, S y D. Este código hace que la tortuga se mueva dos unidades en x si se aprieta D, dos unidades en y si se aprieta W, menos dos unidades en x si se aprieta A y menos dos unidades en y si se aprieta en S. A su vez, igual implementa 4 teclas más: q, c, t y p. La letra q sirve para salirse del programa; p sirve para que la tortuga se deje de mover de inmediato; c para que la tortuga dibuje un cuadrado dónde esté y t para que la tortuga dibuje un triángulo.
