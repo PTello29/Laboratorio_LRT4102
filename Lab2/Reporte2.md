@@ -167,3 +167,5 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%203.png)
