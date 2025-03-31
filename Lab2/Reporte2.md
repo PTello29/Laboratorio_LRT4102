@@ -168,8 +168,18 @@ if __name__ == '__main__':
     main()
 ```
 
-![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%203.png)
+![Inicio del programa](/Lab2/Images/Captura%20de%20pantalla%203.png)
+
 Así es como se ve la interfaz de este código.
 
-![Talker funcionando](/Lab2/Images/Captura%20de%20pantalla%204.png)
+![Ejemplo con WASD](/Lab2/Images/Captura%20de%20pantalla%204.png)
+
 Ejemplo de movimiento con las teclas W, A, S, D.
+
+![Ejemplo con WASD](/Lab2/Images/Captura%20de%20pantalla%205.png)
+
+Ejemplo del cuadrado.
+
+![Ejemplo con WASD](/Lab2/Images/Captura%20de%20pantalla%206.png)
+
+Ejemplo de triángulo.
