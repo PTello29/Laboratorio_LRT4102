@@ -199,3 +199,11 @@ Esta parte del código asegura que el programa se ejecute correctamente como un 
 Para comprobar que el código funciona, se inicializa `roscore` y el launch `lab3.launch` dando el siguiente inicio
 
 ![Inicio del programa](/Lab3/Images/Captura%20de%20pantalla%20inicioLab3_1.png)
+
+Al ingresar unas coordenadas y una orientación, la tortuga muere y aparece de manera efectiva en la posición acordada:
+
+![Nueva posición de la tortuga](/Lab3/Images/Captura%20de%20pantalla%20movimiento.png)
+
+Para verificar que este proceso puede seguir indefinidamente, se ingresan otras coordenadas y orientación para que una nueva tortuga aparezca en esa posición, lo cual resulta satisfactorio evidenciado en la siguiente imagen:
+
+![Bucle infinito de posiciones](/Lab3/Images/Captura%20de%20pantalla%20movimiento2.png)
