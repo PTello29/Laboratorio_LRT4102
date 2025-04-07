@@ -93,7 +93,7 @@ if __name__ == '__main__':
         pass
 ```
 ### Explicación del código
-Después de inicializar las librerías, se inicializa la clase encargada del movimiento de a tortuga con ROS, a la vez que se inicializa la función __init__:
+Después de inicializar las librerías, se inicializa la clase encargada del movimiento de a tortuga con ROS, a la vez que se inicializa la función `__init__`:
 
 ```python
 class MoveTurtleProportionalControl:
@@ -117,5 +117,65 @@ class MoveTurtleProportionalControl:
 Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico `/turtle1/pose` que proprociona información sobre la posición y orientación de la tortuga. A su vez, se crea un publicador para el tópico `/turtle1/cmd_vel` para poder enviar comando de velocidad lineal y angular a la tortuga. Igualmente se inicilizan las variables de posición y la tasa de publicación de mensajes.
 
 ```python
+    def pose_callback(self, pose):
+        # Función que se ejecuta cada vez que llega una actualización de la posición de la tortuga
+        self.current_x = pose.x
+        self.current_y = pose.y
+        self.current_theta = pose.theta
+```
 
+La función `pose_callback` se ejecuta automáticamente cada vez que se recibe un mensaje en el tópico `/turtle1/pose` y registra la posición en cada actualización.
+
+```python
+    def get_desired_x_from_user(self):
+        # Función para obtener la posición deseada del usuario
+        print("Ingrese la posición deseada en el eje x:")
+        return float(input("Coordenada x: "))
+    
+    def get_desired_y_from_user(self):
+        # Función para obtener la posición deseada del usuario
+        print("Ingrese la posición deseada en el eje y:")
+        return float(input("Coordenada y: "))
+    
+    def get_desired_theta_from_user(self):
+        # Función para obtener el ángulo deseado del usuario
+        print("Ingrese el ángulo deseado theta:")
+        return float(input("Ángulo theta: "))
+```
+
+Esta parte del código solo son funciones en las cuáles sale un mensaje para indicar que el usuario ingrese la coordenada x, y y orienatción theta que se quiera.
+
+```python
+    def move_turtle_interactively(self):
+        current_turtle_name = 'turtle1'  # Nombre inicial de la tortuga
+        while not rospy.is_shutdown():
+            # Obtener la posición deseada del usuario
+            desired_x = self.get_desired_x_from_user()
+            desired_y = self.get_desired_y_from_user()
+            desired_theta = self.get_desired_theta_from_user()
+
+            # Eliminar la tortuga actual
+            rospy.wait_for_service('/kill')
+            try:
+                kill_turtle = rospy.ServiceProxy('/kill', Kill)
+                kill_turtle(current_turtle_name)
+            except rospy.ServiceException as e:
+                rospy.logerr(f"Error al eliminar la tortuga: {e}")
+                return
+
+            # Crear una nueva tortuga en la posición deseada
+            rospy.wait_for_service('/spawn')
+            try:
+                new_turtle_name = 'turtle2'  # Nombre de la nueva tortuga
+                spawn_turtle = rospy.ServiceProxy('/spawn', Spawn)
+                spawn_turtle(desired_x, desired_y, desired_theta, new_turtle_name)
+                rospy.loginfo("Nueva tortuga creada en la posición deseada")
+                current_turtle_name = new_turtle_name  # Actualizar el nombre de la tortuga actual
+            except rospy.ServiceException as e:
+                rospy.logerr(f"Error al crear la nueva tortuga: {e}")
+                return
+
+            # Actualizar los tópicos para la nueva tortuga
+            self.pose_subscriber = rospy.Subscriber(f'/{current_turtle_name}/pose', Pose, self.pose_callback)
+            self.velocity_publisher = rospy.Publisher(f'/{current_turtle_name}/cmd_vel', Twist, queue_size=10)
 ```
