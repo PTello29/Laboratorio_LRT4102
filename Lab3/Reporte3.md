@@ -92,4 +92,26 @@ if __name__ == '__main__':
     except rospy.ROSInterruptException:
         pass
 ```
+### Explicación del código
+Después de inicializar las librerías, se inicializa la clase encargada del movimiento de a tortuga con ROS:
 
+```python
+class MoveTurtleProportionalControl:
+    def __init__(self):
+        rospy.init_node('control_tortuga_x')
+        
+        # Suscribirse al topic de la posición de la tortuga
+        self.pose_subscriber = rospy.Subscriber('/turtle1/pose', Pose, self.pose_callback)
+        
+        # Publicar en el topic de comandos de movimiento de la tortuga
+        self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+        
+        # Tasa de publicación de mensajes (10 Hz)
+        self.rate = rospy.Rate(10)
+        
+        # Inicializar variables de posición
+        self.current_x = 0
+        self.current_y = 0
+        self.current_theta = 0
+```
+Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico >/turtle1/pose
