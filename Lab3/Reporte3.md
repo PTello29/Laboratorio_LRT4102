@@ -193,3 +193,9 @@ if __name__ == '__main__':
 ```
 
 Esta parte del código asegura que el programa se ejecute correctamente como un script independiente. Inicializa la clase encargada del control de la tortuga y ejecuta el método principal para interactuar con el usuario.
+
+### Resultados
+
+Para comprobar que el código funciona, se inicializa `roscore` y el launch `lab3.launch` dando el siguiente inicio
+
+![Inicio del programa](/Lab3/Images/Captura%20de%20pantalla%20inicioLab3_1.png)
