@@ -93,7 +93,7 @@ if __name__ == '__main__':
         pass
 ```
 ### Explicación del código
-Después de inicializar las librerías, se inicializa la clase encargada del movimiento de a tortuga con ROS:
+Después de inicializar las librerías, se inicializa la clase encargada del movimiento de a tortuga con ROS, a la vez que se inicializa la función __init__:
 
 ```python
 class MoveTurtleProportionalControl:
@@ -114,4 +114,8 @@ class MoveTurtleProportionalControl:
         self.current_y = 0
         self.current_theta = 0
 ```
-Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico `/turtle1/pose`
+Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico `/turtle1/pose` que proprociona información sobre la posición y orientación de la tortuga. A su vez, se crea un publicador para el tópico `/turtle1/cmd_vel` para poder enviar comando de velocidad lineal y angular a la tortuga. Igualmente se inicilizan las variables de posición y la tasa de publicación de mensajes.
+
+```python
+
+```
