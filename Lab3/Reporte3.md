@@ -1,5 +1,8 @@
 # Reporte de laboratorio 3
-En este reporte, se elaboraron dos actividades complementarias. En la primera parte se desarrolló un código que una tortuga llegue a una posición y orintación proporcionadas por el usuario al matar a la tortuga y generar una nueva en la posición acordada. El código quedó de la siguiente forma:
+En este reporte, se elaboraron dos actividades complementarias sobre el movimiento de una tortuga en el espacio de trabajo para llegar a una posición y orientación introducidas por el usuario.
+
+## Primera parte
+En la primera parte se desarrolló un código que una tortuga llegue a una posición y orintación proporcionadas por el usuario al matar a la tortuga y generar una nueva en la posición acordada. El código quedó de la siguiente forma:
 
 ```python
 #!/usr/bin/env python3
