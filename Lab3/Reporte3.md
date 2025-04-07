@@ -179,3 +179,17 @@ Esta parte del código solo son funciones en las cuáles sale un mensaje para in
             self.pose_subscriber = rospy.Subscriber(f'/{current_turtle_name}/pose', Pose, self.pose_callback)
             self.velocity_publisher = rospy.Publisher(f'/{current_turtle_name}/cmd_vel', Twist, queue_size=10)
 ```
+
+Esta parte es el verdadero fucnionamiento del código, ya que es aquí donde, primeramente, se crea un ciclo `while not rospy.is_shutdown` que indica que mientras el ambiente siga corriendo, se realice todo lo que está dentro del ciclo que es: obtener las coordenadas deseadas por el usuario, matar a la tortuga en la posición anterior y generar una nueva tortuga en la posición y orientación proporcionadas.
+
+
+```python
+if __name__ == '__main__':
+    try:
+        move_turtle_proportional = MoveTurtleProportionalControl()
+        move_turtle_proportional.move_turtle_interactively()
+    except rospy.ROSInterruptException:
+        pass
+```
+
+Esta parte del código asegura que el programa se ejecute correctamente como un script independiente. Inicializa la clase encargada del control de la tortuga y ejecuta el método principal para interactuar con el usuario.
