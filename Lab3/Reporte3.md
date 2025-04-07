@@ -114,4 +114,4 @@ class MoveTurtleProportionalControl:
         self.current_y = 0
         self.current_theta = 0
 ```
-Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico >/turtle1/pose
+Primeramente se inicializa el nodo, que es el punto de entrada para interactuar con el sistema y permite la suscripción a tópicos y llamar servicios, el cual es el siguiente paso, ya que se suscribe al tópico `/turtle1/pose
