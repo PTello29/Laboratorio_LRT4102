@@ -36,3 +36,9 @@ else:
 ```
 
 El programa lee un número entero positivo introducido por el usuario y luego calcula la suma de todos los números enteros desde 1 hasta ese número. L ametodología parte de que primero se le pide al usuario que introduzca un número para después verificar si ese número es mayor que cero (es decir, si es un entero positivo). Si el número es válido, se calcula la suma de todos los enteros desde 1 hasta ese número. Si el número no es positivo, el programa muestra un mensaje pidiendo un número válido.
+
+Resultado de salida: 
+```
+![image](https://github.com/user-attachments/assets/8a298668-403d-4fd4-bd76-81a5c9cdb7ac)
+
+```
