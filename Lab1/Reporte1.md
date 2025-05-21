@@ -122,3 +122,56 @@ El programa recorre cada sublista dentro de operadores usando un ciclo for. Para
 * Extrae el nombre.
 * Calcula el sueldo total multiplicando el sueldo por hora por las horas trabajadas.
 * Imprime un mensaje que indica cuánto debe recibir ese operador por su trabajo.
+
+Resultado del programa:
+```
+Juan debe recibir $400 por su trabajo
+María debe recibir $420 por su trabajo
+Pedro debe recibir $360 por su trabajo
+Ana debe recibir $450 por su trabajo
+Luis debe recibir $400 por su trabajo
+Sofía debe recibir $375 por su trabajo
+```
+
+### Problema 4.
+# Crea una lista llamada numeros que contenga al menos 10 números. Calcula el promedio de los números pares y el producto de los números impares e imprime los resultados.
+
+```python
+# Crea una lista llamada numeros que contenga al menos 10 números.
+# Calcula el promedio de los números pares y el producto de los números impares.
+# Imprime los resultados
+
+# Lista de números
+numero = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares = []
+impares = []
+
+# Clasificación de pares e impares
+for numero in numero:
+    if numero % 2 == 0:
+        pares.append(numero)
+    else:
+        impares.append(numero)
+
+# Cálculo del promedio de los pares y el producto de los impares
+promediopar = sum(pares) / len(pares)
+producto_impar = 1
+for num in impares:
+    producto_impar *= num
+
+print(f"El promedio de los pares es: {promediopar}")
+print(f"El producto de los impares es: {producto_impar}")
+```
+
+Este programa trabaja con una lista de números enteros y realiza dos operaciones distintas según si los números son pares o impares. SSe define una lista llamada numero que contiene 10 números enteros del 1 al 10 y se crean dos listas vacías, pares y impares. Luego, el código recorre cada número en la lista numero y usa el operador módulo (%) para verificar si es par o impar:
+
+* Si el número es divisible por 2 (numero % 2 == 0), se agrega a la lista pares.
+* Si no, se agrega a la lista impares.
+
+Luego, calcula el promedio de los números pares sumando todos los elementos de pares y dividiendo por la cantidad de elementos y hace un ciclo for para los impares donde se van multiplicando. Después se imprime el promedio de los números pares y el resultado del producto de los impares.
+
+Resultado del programa:
+```
+El promedio de los pares es: 6.0
+El producto de los impares es: 945
+```
