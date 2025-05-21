@@ -134,7 +134,7 @@ Sofía debe recibir $375 por su trabajo
 ```
 
 ### Problema 4.
-# Crea una lista llamada numeros que contenga al menos 10 números. Calcula el promedio de los números pares y el producto de los números impares e imprime los resultados.
+Crea una lista llamada numeros que contenga al menos 10 números. Calcula el promedio de los números pares y el producto de los números impares e imprime los resultados.
 
 ```python
 # Crea una lista llamada numeros que contenga al menos 10 números.
