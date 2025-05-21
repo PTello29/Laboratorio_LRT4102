@@ -66,7 +66,7 @@ La suma de todos los enteros desde 1 hasta 5 es: 15
 ### Problema 2
 Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
 
-```
+```pyhton
 # Problema 2: Escribir un programa que pregunte al usuario por el número de horas trabajadas 
 # y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
 
@@ -89,3 +89,36 @@ Tu paga es de 500.0 pesos
 ```
 
 ### Problema 3
+Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
+
+```python
+# Problema 3: Crea una lista de nombre + sueldo por hora + horas trabajadas de 
+# al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
+
+# Lista de operadores
+operadores = [
+    ["Juan", 10, 40],
+    ["María", 12, 35],
+    ["Pedro", 8, 45],
+    ["Ana", 15, 30],
+    ["Luis", 20, 20],
+    ["Sofía", 25, 15]
+]   
+
+# Imprimir nombre y sueldo a pagar de cada operador
+for operador in operadores:
+    nombre = operador[0]
+    sueldo = operador[1] * operador[2]
+    print(f"{nombre} debe recibir ${sueldo} por su trabajo")
+```
+Este programa maneja una lista de operadores, donde cada operador está representado por una sublista que contiene tres elementos: su nombre, su sueldo por hora y las horas que ha trabajado. Se crea una lista llamada operadores con seis sublistas, cada una correspondiente a un operador diferente. Cada sublista contiene:
+
+* El nombre del operador (una cadena de texto).
+* El sueldo por hora (un número entero o decimal).
+* Las horas trabajadas (un número entero o decimal).
+
+El programa recorre cada sublista dentro de operadores usando un ciclo for. Para cada operador:
+
+* Extrae el nombre.
+* Calcula el sueldo total multiplicando el sueldo por hora por las horas trabajadas.
+* Imprime un mensaje que indica cuánto debe recibir ese operador por su trabajo.
